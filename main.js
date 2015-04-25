@@ -8,35 +8,36 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-// Global vars
-var DBNAME = "smartroads", DBCOLLECTION = "data", DBHOST, DBPORT, ROOT_PATH;
+// Config parameters
+var config = {
+    DBNAME : "smartroads",
+    DBCOLLECTION : "data",
+    DBHOST : argv.h || null,
+    DBPORT : argv.P || null,
+    DBUSER : argv.u || null,
+    DBPWD : argv.p || null,
+    ROOT_PATH : argv.path || ""
+}
 
-// Init arguments
-var DBHOST = argv.h || null;
-var DBPORT = argv.P || null;
-var DBUSER = argv.u || null;
-var DBPWD = argv.p || null;
-var ROOT_PATH = argv.path || "";
-
-if (!(DBHOST || DBPORT)) {
+if (!(config.DBHOST || config.DBPORT)) {
     console.log("[!] Usage: node " + __filename + " -h <DBHOST> -P <DBPORT> [-u <USER> -p <PWD>] [-path <PATH>]");
     process.exit(1);
 }
 
 // Main
-var db = new mongodb.Db(DBNAME, new mongodb.Server(DBHOST, DBPORT, {auto_reconnect: true}), {new: -1}), con;
+config.db = new mongodb.Db(config.DBNAME, new mongodb.Server(config.DBHOST, config.DBPORT, {auto_reconnect: true}), {new: -1});
 
-db.open(function(err, client) {
+config.db.open(function(err, client) {
         if (err) {
             // todo: add logger to log error
-            db.close();
+            config.db.close();
             process.exit(1);
         } else {
-            con = client;
-            if (DBUSER && DBPWD) {
-                db.authenticate(DBUSER, DBPWD, function(err, res) {
+            config.con = client;
+            if (config.DBUSER && config.DBPWD) {
+                config.db.authenticate(config.DBUSER, config.DBPWD, function(err, res) {
                     if (err) {
-                        db.close();
+                        config.db.close();
                         process.exit(1);
                     }
                 });
@@ -45,12 +46,12 @@ db.open(function(err, client) {
 });
 
 // Import API public methods
-var router = require('./api.js');
+var router = require('./api.js')(config);
 
 // Register routes
-app.use(ROOT_PATH + "/api", router);
+app.use(config.ROOT_PATH + "/api", router);
 
-app.use(ROOT_PATH + "/", express.static(__dirname + "/app"));
+app.use(config.ROOT_PATH + "/", express.static(__dirname + "/app"));
 
 app.get("*", function(req, res) {
   res.redirect("/");
