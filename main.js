@@ -46,10 +46,12 @@ config.db.open(function(err, client) {
 });
 
 // Import API public methods
-var router = require('./api.js')(config);
+var api = require('./api.js')(config);
+var auth = require('./auth.js')(config);
 
 // Register routes
-app.use(config.ROOT_PATH + "/api", router);
+app.use(config.ROOT_PATH + "/api", api);
+app.use(config.ROOT_PATH + "/auth", auth);
 
 app.use(config.ROOT_PATH + "/", express.static(__dirname + "/app"));
 
