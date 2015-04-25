@@ -12,7 +12,7 @@ module.exports = function(config) {
         kilometer = parseFloat(req.params.kilometer);
      
         // todo: check authentication
-        console.log(req.params.token);
+        // req.body.token;
         
         // Data validation
         if (isNaN(kilometer) || (country.length > 2)) {
