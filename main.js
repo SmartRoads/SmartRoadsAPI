@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // Global vars
 var DBNAME = "smartroads", DBCOLLECTION = "data", DBHOST, DBPORT, ROOT_PATH;
 
-// Init arguments 
+// Init arguments
 var DBHOST = argv.h || null;
 var DBPORT = argv.P || null;
 var DBUSER = argv.u || null;
@@ -19,7 +19,7 @@ var DBPWD = argv.p || null;
 var ROOT_PATH = argv.path || "";
 
 if (!(DBHOST || DBPORT)) {
-    console.log("[!] Usage: node " + __filename + " -h <HOST> -P <PORT> [-u <USER> -p <PWD>] [-path <PATH>]"); 
+    console.log("[!] Usage: node " + __filename + " -h <DBHOST> -P <DBPORT> [-u <USER> -p <PWD>] [-path <PATH>]");
     process.exit(1);
 }
 
@@ -38,7 +38,7 @@ db.open(function(err, client) {
                     if (err) {
                         db.close();
                         process.exit(1);
-                    } 
+                    }
                 });
             }
         }
@@ -81,6 +81,12 @@ router.put('/update/:country/:road/:kilometer', function(req, res) {
 
 // Register routes
 app.use(ROOT_PATH + "/api", router);
+
+app.use(ROOT_PATH + "/", express.static(__dirname + "/app"));
+
+app.get("*", function(req, res) {
+  res.redirect("/");
+});
 
 // Start listening on port
 app.listen(8888);

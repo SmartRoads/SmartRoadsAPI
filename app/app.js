@@ -3,12 +3,12 @@
     .module("SmartRoads", ["ngRoute", "ui.bootstrap"])
     .config(["$routeProvider", "$locationProvider", "$httpProvider", function($routeProvider, $locationProvider, $httpProvider) {
       $routeProvider.
-      when("/landing", {
+      when("/", {
         templateUrl: "views/landing.html",
         controller: "LandingController"
       }).
       otherwise({
-        redirectTo: "/landing"
+        redirectTo: "/"
       });
       $locationProvider.html5Mode(true);
       //$httpProvider.interceptors.push('loginInterceptor');
