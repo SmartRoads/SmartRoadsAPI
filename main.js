@@ -63,11 +63,11 @@ router.post('/status/:country/:road/:kilometer', function(req, res) {
     } else {
         var col = db.collection(DBCOLLECTION);
         // todo: manage timestamps
-        col.find({"country":country, "road":road, "kilometer":kilometer}).toArray(function(err, docs) {
+        col.findOne({"country":country, "road":road, "kilometer":kilometer}, function(err, doc) {
             if (err) {
                 res.status(500).send("{\"error\":\"database connection fail\"}");
             } else {
-                res.status(200).send(JSON.stringify(docs));
+                res.status(200).send(JSON.stringify(doc));
             }
         });
     }
