@@ -1,0 +1,61 @@
+<div class="row-fluid">
+  <div class="col-md-3 text-center box">
+    <div class="padding semi-bg">
+      <img class="landing-icon" src="assets/img/icon.png"/>
+        <p class="icon-description">Duis commodo ex at nisl facilisis, eu ultrices ligula sagittis. Quisque vitae fringilla ligula, eu porta lectus. Nullam ac vehicula arcu. Donec dictum nibh ac nunc sodales dictum. </p>
+    </div>
+  </div>
+  <div class="col-md-3 text-center box">
+    <div class="padding semi-bg">
+      <img class="landing-icon" src="assets/img/icon.png"/>
+        <p class="icon-description">Duis commodo ex at nisl facilisis, eu ultrices ligula sagittis. Quisque vitae fringilla ligula, eu porta lectus. Nullam ac vehicula arcu. Donec dictum nibh ac nunc sodales dictum. </p>
+    </div>
+  </div>
+  <div class="col-md-3 text-center box">
+    <div class="padding semi-bg">
+      <img class="landing-icon" src="assets/img/icon.png"/>
+        <p class="icon-description">Duis commodo ex at nisl facilisis, eu ultrices ligula sagittis. Quisque vitae fringilla ligula, eu porta lectus. Nullam ac vehicula arcu. Donec dictum nibh ac nunc sodales dictum. </p>
+    </div>
+  </div>
+  <div class="col-md-3 text-center box">
+    <div class="padding semi-bg">
+      <img class="landing-icon" src="assets/img/icon.png"/>
+      <p class="icon-description">Duis commodo ex at nisl facilisis, eu ultrices ligula sagittis. Quisque vitae fringilla ligula, eu porta lectus. Nullam ac vehicula arcu. Donec dictum nibh ac nunc sodales dictum. </p>
+    </div></div>
+  <div class="col-md-3 text-center box">
+    <div class="padding semi-bg">
+      <img class="landing-icon" src="assets/img/icon.png"/>
+      <p class="icon-description">Duis commodo ex at nisl facilisis, eu ultrices ligula sagittis. Quisque vitae fringilla ligula, eu porta lectus. Nullam ac vehicula arcu. Donec dictum nibh ac nunc sodales dictum. </p>
+    </div></div>
+  <div class="col-md-3 text-center box">
+    <div class="padding semi-bg">
+      <img class="landing-icon" src="assets/img/icon.png"/>
+      <p class="icon-description">Duis commodo ex at nisl facilisis, eu ultrices ligula sagittis. Quisque vitae fringilla ligula, eu porta lectus. Nullam ac vehicula arcu. Donec dictum nibh ac nunc sodales dictum. </p>
+    </div></div>
+  <div class="col-md-3 text-center box">
+    <div class="padding semi-bg">
+      <img class="landing-icon" src="assets/img/icon.png"/>
+      <p class="icon-description">Duis commodo ex at nisl facilisis, eu ultrices ligula sagittis. Quisque vitae fringilla ligula, eu porta lectus. Nullam ac vehicula arcu. Donec dictum nibh ac nunc sodales dictum. </p>
+    </div></div>
+  <div class="col-md-3 text-center box">
+    <div class="padding semi-bg">
+      <img class="landing-icon" src="assets/img/icon.png"/>
+      <p class="icon-description">Duis commodo ex at nisl facilisis, eu ultrices ligula sagittis. Quisque vitae fringilla ligula, eu porta lectus. Nullam ac vehicula arcu. Donec dictum nibh ac nunc sodales dictum. </p>
+    </div></div>
+</div>
+<script>
+$(document).ready(function() {
+  $('.col-md-3').hover(function(){
+    var that = $(this);
+    $(that).find('.landing-icon').fadeOut('fast', function() {
+      $(that).find('.icon-description').fadeIn('fast');
+    });
+  }, function(){
+    var that = $(this);
+    $(that).find('.icon-description').fadeOut('fast', function() {
+      $(that).find('.landing-icon').fadeIn('fast');
+    });
+  });
+});
+
+</script>

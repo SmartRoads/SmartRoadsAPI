@@ -1,0 +1,52 @@
+/* Common */
+
+html {
+  min-height: 100%;
+  font-family: "Open Sans";
+}
+
+body {
+  background: url('assets/img/bg.jpg') no-repeat center center fixed;
+}
+
+h1.title {
+  color: white;
+  padding-top: 10px;
+  font-size: 9em;
+  text-shadow: 2px 2px rgba(0,0,0,0.5);
+  font-family: 'Righteous', cursive;
+}
+
+p {
+  color: white;
+}
+
+.semi-bg {
+  color: white;
+  background: rgba(255,255,255,0.2);
+}
+
+.vertical-center {
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.landing-icon {
+  width: 64px;
+  height: 64px;
+}
+
+.full-width {
+  width:100%;
+}
+
+.padding {
+  padding: 10px;
+  margin: 10px;
+}
+
+.icon-description {
+  display: none;
+}
