@@ -1,0 +1,12 @@
+{
+  "name": "SmartRoadsAPI",
+  "description": "REST API for Smart Roads as a service",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "4.x",
+    "mongodb": "*",
+    "minimist": "*",
+    "body-parser": "*"
+  }
+}
