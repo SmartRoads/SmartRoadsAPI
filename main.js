@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // Config parameters
 var config = {
     DBNAME : "smartroads",
-    DBCOLLECTION : "data",
+    DBCOLLECTIONS : {DATA: "data", USERS: "lusers"},
     DBHOST : argv.h || null,
     DBPORT : argv.P || null,
     DBUSER : argv.u || null,

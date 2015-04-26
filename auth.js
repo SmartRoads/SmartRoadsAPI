@@ -1,6 +1,7 @@
 var express = require("express");
 var paypal = require('paypal-rest-sdk');
 var braintree = require('braintree');
+var crypto = require("crypto");
 var gateway = braintree.connect({
   environment: braintree.Environment.Sandbox,
   merchantId: "53wnfzh6mhb9dcgm",
@@ -34,11 +35,13 @@ module.exports = function(config) {
         var email = req.body.email;
         var password = req.body.password;
 
-        var col = config.db.collection(config.DBCOLLECTION);
+        var col = config.db.collection(config.DBCOLLECTIONS.USERS);
 
         col.findOne({"email":email, "password": hash(password)}, function(err, user) {
             if (err) {
-                res.status(500).send("{\"error\":\"database connection fail\"}");
+              res.status(500).send("{\"error\":\"database connection fail\"}");
+            } else if (!user){
+              res.status(200).send({error: "The user doesnt exist"});
             } else {
               res.status(200).send({token: user.token});
             }
@@ -47,30 +50,41 @@ module.exports = function(config) {
 
     router.post('/register', function(req, res) {
         res.contentType("application/json");
+        var email = req.body.email;
+        var password = hash(req.body.password);
         var nonce = req.body.payment_method_nonce;
-        gateway.transaction.sale({
-          amount: '10.00',
-          paymentMethodNonce: nonce,
-        }, function (err, result) {
-          var email = req.body.email;
-          var password = hash(password);
-          var token = result.transaction.paypal.paymentId;
+        var col = config.db.collection(config.DBCOLLECTIONS.USERS);
+        col.findOne({"email":email, "password": hash(password)}, function(err, user) {
+            if (err) {
+              res.status(500).send("{\"error\":\"database connection fail\"}");
+            } else if (!user){
+              gateway.transaction.sale({
+                amount: '10.00',
+                paymentMethodNonce: nonce,
+              }, function (err, result) {
+                var token = result.transaction.paypal.paymentId;
+                col.save({ email: email, password: password, token: token });
+                res.status(200).send({token: token});
+              });
+            } else {
+              res.status(200).send({error: "The user already exists"});
+            }
+        });
+    });
 
-          var col = config.db.collection(config.DBCOLLECTION);
-
-          col.findOne({"email":email, "password": hash(password)}, function(err, user) {
-              if (err) {
-                  res.status(500).send("{\"error\":\"database connection fail\"}");
-              } else {
-                if (!user) {
-                  col.save({ email: email, password: password, token: token });
-                  res.status(200).send({token: user.token});
-                } else {
-                  res.status(500).send("{\"error\":\"database connection fail\"}");
-                }
-
-              }
-          });
+    router.post('/registerCheck', function(req, res) {
+        res.contentType("application/json");
+        var email = req.body.email;
+        var password = hash(req.body.password);
+        var col = config.db.collection(config.DBCOLLECTIONS.USERS);
+        col.findOne({"email":email}, function(err, user) {
+            if (err) {
+              res.status(500).send({ok: false});
+            } else if (!user){
+              res.status(200).send({ok: true});
+            } else {
+              res.status(200).send({ok: false});
+            }
         });
     });
     return router;

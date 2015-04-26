@@ -1,21 +1,29 @@
-<ng-include src="'views/header.html'"></ng-include>
-<div class="row">
-  <div class="col-md-4 text-center">
-    <div class="padding semi-bg">
-      <h2>GET pis</h2>
-      <p>AAAAaaaa</p>
+<div ng-controller="SmartRoadsController as src">
+  <ng-include src="'views/header.html'"></ng-include>
+  <h2 id="token">Your token is: </h2>
+  <script>
+    $(document).ready(function() {
+      $("#token").text($("#token").text()+sessionStorage.token);
+    });
+  </script>
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <div class="padding semi-bg">
+        <h2>GET pis</h2>
+        <p>AAAAaaaa</p>
+      </div>
     </div>
-  </div>
-  <div class="col-md-4 text-center">
-    <div class="padding semi-bg">
-      <h2>POST pis</h2>
-      <p>AAAAaaaa</p>
+    <div class="col-md-4 text-center">
+      <div class="padding semi-bg">
+        <h2>POST pis</h2>
+        <p>AAAAaaaa</p>
+      </div>
     </div>
-  </div>
-  <div class="col-md-4 text-center">
-    <div class="padding semi-bg">
-      <h2>PUT pis</h2>
-      <p>AAAAaaaa</p>
+    <div class="col-md-4 text-center">
+      <div class="padding semi-bg">
+        <h2>PUT pis</h2>
+        <p>AAAAaaaa</p>
+      </div>
     </div>
   </div>
 </div>

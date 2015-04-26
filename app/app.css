@@ -42,6 +42,11 @@ p {
   height: 64px;
 }
 
+.error {
+  color: red;
+  text-transform: uppercase;
+}
+
 .full-width {
   width:100%;
 }
@@ -57,7 +62,7 @@ p {
 
 .blocks .btn-primary, .blocks .btn-success {
   padding: 5px 5px;
-  display: block;
+
   border-radius: 0;
   margin-bottom: 10px;
 }

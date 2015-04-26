@@ -18,6 +18,7 @@
       </button>
     </div>
   </div>
+  <p class="error" ng-bind="src.message"></p>
 </div>
 
 <div class="modal fade" id="buy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -57,9 +58,14 @@
       });
     });
     $("#register").click(function() {
-      if ($("#email").val() !== "" && $("#password").val() !== "" && $("#email").val().indexOf("@") > 0) {
-        $('#buy').modal('toggle');
-      }
+      $.post("auth/registerCheck", {email: $("#email").val(), password: $("#password").val() }, function( data ) {
+        console.log(data);
+        if (data.ok === true) {
+          $('#buy').modal('toggle');
+        } else {
+          $(".error").text("User already exists");
+        }
+      });
     });
   });
 </script>
