@@ -1,0 +1,31 @@
+<div ng-controller="SmartRoadsController as src">
+  <div class="row-fluid">
+    <div class="col-md-4 col-md-offset-4">
+      <form class="loginForm" name="loginForm">
+        <div class="form-group form-row">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" placeholder="e-mail" ng-model="src.email"/>
+        </div>
+        <div class="form-group form-row">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" placeholder="Password" ng-model="src.password"/>
+        </div>
+        <div class="btn-group blocks btn-group-justified">
+          <div class="btn-group btn-md">
+            <button class="btn btn-success" ng-click="lc.login()">
+              <span class="glyphicon glyphicon-log-in"></span>&nbsp;Login
+            </button>
+          </div>
+          <div class="btn-group btn-md">
+            <button class="btn btn-primary" ng-click="lc.signUp()">
+              <span class="glyphicon glyphicon-plus"></span>&nbsp;Sign up
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="footer text-center">
+        <a href="https://github.com/adambarreiro/runular" target="_blank">See <b>runular</b> at GitHub</a>
+      </div>
+    </div>
+  </div>
+</div>

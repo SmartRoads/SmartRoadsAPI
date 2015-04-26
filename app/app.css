@@ -21,6 +21,10 @@ p {
   color: white;
 }
 
+.modaltext {
+  color: black;
+}
+
 .semi-bg {
   color: white;
   background: rgba(255,255,255,0.2);
@@ -49,4 +53,19 @@ p {
 
 .icon-description {
   display: none;
+}
+
+.blocks .btn-primary, .blocks .btn-success {
+  padding: 5px 5px;
+  display: block;
+  border-radius: 0;
+  margin-bottom: 10px;
+}
+
+.blocks {
+  border-spacing: 5px;
+}
+
+.btn-default, .btn-success, .btn-danger {
+  border-radius: 0;
 }
