@@ -41,7 +41,7 @@ module.exports = function(config) {
             if (err) {
               res.status(500).send("{\"error\":\"database connection fail\"}");
             } else if (!user){
-              res.status(200).send({error: "The user doesnt exist"});
+              res.status(200).send({error: "Incorrect login"});
             } else {
               res.status(200).send({token: user.token});
             }

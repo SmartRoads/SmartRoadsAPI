@@ -1,29 +1,11 @@
-<div ng-controller="SmartRoadsController as src">
-  <ng-include src="'views/header.html'"></ng-include>
-  <h2 id="token">Your token is: </h2>
-  <script>
-    $(document).ready(function() {
-      $("#token").text($("#token").text()+sessionStorage.token);
-    });
-  </script>
-  <div class="row">
-    <div class="col-md-4 text-center">
-      <div class="padding semi-bg">
-        <h2>GET pis</h2>
-        <p>AAAAaaaa</p>
-      </div>
-    </div>
-    <div class="col-md-4 text-center">
-      <div class="padding semi-bg">
-        <h2>POST pis</h2>
-        <p>AAAAaaaa</p>
-      </div>
-    </div>
-    <div class="col-md-4 text-center">
-      <div class="padding semi-bg">
-        <h2>PUT pis</h2>
-        <p>AAAAaaaa</p>
-      </div>
-    </div>
-  </div>
-</div>
+<ng-include src="'views/header.html'"></ng-include>
+<h2 id="token">Your token is: </h2>
+<script>
+  $(document).ready(function() {
+    $("#token").text($("#token").text()+sessionStorage.token);
+    // Ñapa para la basura de Bootstrap que no cerraba el modal ni a tiros
+    $("body").removeClass("modal-open");
+    $(".modal-backdrop").remove();
+  });
+</script>
+<a href="https://github.com/SmartRoads/SmartRoadsAPI" target="_blank"><h3>API docs</h3></a>

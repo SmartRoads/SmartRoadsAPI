@@ -6,7 +6,7 @@
   <div class="col-md-4">
     <input id="password" type="password" class="form-control" placeholder="Password" ng-model="src.password" ng-maxlength=20 required/>
   </div>
-  <div class="col-md-4 btn-group blocks btn-group-justified">
+  <div class="col-md-4 blocks">
     <div class="btn-group btn-md">
       <button class="btn btn-success" ng-click="src.login()">
         <span class="glyphicon glyphicon-log-in"></span>&nbsp;API login
@@ -19,7 +19,8 @@
     </div>
   </div>
   <p class="error" ng-bind="src.message"></p>
-</div>
+  <input type="hidden" id="next" ng-click="src.next()"/>
+
 
 <div class="modal fade" id="buy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -40,7 +41,6 @@
     </div>
   </div>
 </div>
-<input type="hidden" id="next" ng-click="src.loginNext()"/>
 <script>
   $(document).ready(function() {
     $.get("auth/token", function(data) {
@@ -59,7 +59,6 @@
     });
     $("#register").click(function() {
       $.post("auth/registerCheck", {email: $("#email").val(), password: $("#password").val() }, function( data ) {
-        console.log(data);
         if (data.ok === true) {
           $('#buy').modal('toggle');
         } else {
@@ -69,3 +68,4 @@
     });
   });
 </script>
+</div>

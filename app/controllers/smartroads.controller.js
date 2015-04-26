@@ -15,7 +15,6 @@
 
     function login() {
       smartRoadsService.login(vm.email, vm.password, function(data) {
-        console.log(data);
         if (data.error) {
             vm.message = data.error;
         } else {
